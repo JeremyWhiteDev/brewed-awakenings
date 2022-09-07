@@ -1,12 +1,23 @@
-import { getEmployees } from "./database.js";
+import { getEmployees, getOrders } from "./database.js";
 
 const employees = getEmployees();
+const orders = getOrders();
 
 document.addEventListener("click", (event) => {
   const itemClicked = event.target;
   if (itemClicked.id.startsWith("employee")) {
     const [, employeeId] = itemClicked.id.split("--");
-    window.alert(`${employeeId}`);
+    const foundEmployee = employees.find(
+      ({ id }) => id === parseInt(employeeId)
+    );
+    //take employeeid, i'm going to use it to iterate over orders and calculate the amount of orders
+    const employeeOrderCount = orders.filter((obj) => {
+      if (obj.employeeId === parseInt(employeeId)) {
+        return true;
+      }
+    }).length;
+
+    window.alert(`${foundEmployee.name} has sold ${employeeOrderCount} items`);
   }
 });
 

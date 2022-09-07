@@ -8,9 +8,7 @@ document.addEventListener("click", (event) => {
     const [, productId] = itemClicked.id.split("--");
     // console.log(productId);
     //take captured product id. find the object that matches in the products array.
-    const foundProduct = products.find(
-      (product) => product.id == parseInt(productId)
-    );
+    const foundProduct = products.find(({ id }) => id == parseInt(productId));
 
     window.alert(`${foundProduct.name} costs $${foundProduct.price}`);
   }
