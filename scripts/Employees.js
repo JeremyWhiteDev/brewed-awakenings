@@ -4,8 +4,9 @@ const employees = getEmployees();
 
 document.addEventListener("click", (event) => {
   const itemClicked = event.target;
-  if (event.target.id.startsWith("employee")) {
-    window.alert(`employee`);
+  if (itemClicked.id.startsWith("employee")) {
+    const [, employeeId] = itemClicked.id.split("--");
+    window.alert(`${employeeId}`);
   }
 });
 

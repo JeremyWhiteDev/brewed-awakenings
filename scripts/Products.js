@@ -4,8 +4,15 @@ const products = getProducts();
 
 document.addEventListener("click", (event) => {
   const itemClicked = event.target;
-  if (event.target.id.startsWith("product")) {
-    window.alert(`product`);
+  if (itemClicked.id.startsWith("product")) {
+    const [, productId] = itemClicked.id.split("--");
+    // console.log(productId);
+    //take captured product id. find the object that matches in the products array.
+    const foundProduct = products.find(
+      (product) => product.id == parseInt(productId)
+    );
+
+    window.alert(`${foundProduct.name} costs $${foundProduct.price}`);
   }
 });
 
